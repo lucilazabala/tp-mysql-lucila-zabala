@@ -41,3 +41,35 @@ CREATE TABLE historial_clinico(
     fecha_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     descripcion VARCHAR(250) NOT NULL
 );
+
+-- Ejercicio 6 – Insertar registros
+-- 3 dueños con información completa
+INSERT INTO
+    duenos (nombre, apellido, telefono, direccion)
+VALUES
+    ('Silvina', 'Mansilla', '3514332211', 'Avenida General Paz 200, Centro'),
+    ('Ricardo', 'Darín', '3515443322', 'Bv. Chacabuco 1500, Nueva Córdoba'),
+    ('Natalia', 'Oreiro', '3516554433', 'Calle Belgrano 600, Güemes');
+
+-- 3 mascotas, cada una asociada a un dueño
+INSERT INTO
+    mascotas (nombre, especie, fecha_nacimiento, id_dueno)
+VALUES
+    ('Mushu', 'Cobayo', '2021-10-14', 1),
+    ('Chulo', 'Gato', '2024-12-03', 2),
+    ('Micha', 'Nutria', '2019-03-25', 3);
+
+-- 2 veterinarios con especialidades distintas
+INSERT INTO
+    veterinarios (nombre, apellido, matricula, especialidad)
+VALUES
+    ('Lucas', 'Cabral', 'MV-AR05', 'Clínica General'),
+    ('Sofia', 'Gutiérrez', 'MV-AR06', 'Oftalmología');
+
+-- 3 registros de historial clínico
+INSERT INTO
+    historial_clinico (id_mascota, id_veterinario, descripcion)
+VALUES
+    (1, 1, 'Control general de roedor, peso estable, se recomienda cambio de dieta.'),
+    (2, 2, 'Revisión ocular por lagrimeo excesivo. Diagnóstico: conjuntivitis leve.'),
+    (3, 1, 'Consulta por falta de apetito. Se le suministró vitaminas y antiparasitarios.');
