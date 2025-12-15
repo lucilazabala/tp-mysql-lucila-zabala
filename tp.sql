@@ -19,7 +19,8 @@ CREATE TABLE mascotas (
     especie VARCHAR(30) NOT NULL,
     fecha_nacimiento DATE,
     id_dueno INT,
-    FOREIGN KEY (id_dueno) REFERENCES duenos(id)
+    FOREIGN KEY (id_dueno)
+        REFERENCES duenos(id)
 );
 
 -- Ejercicio 4 – Crear tabla veterinarios
@@ -35,9 +36,12 @@ CREATE TABLE veterinarios (
 CREATE TABLE historial_clinico(
     id INT PRIMARY KEY AUTO_INCREMENT,
     id_mascota INT,
-    FOREIGN KEY (id_mascota) REFERENCES mascotas(id),
+    FOREIGN KEY (id_mascota)
+        REFERENCES mascotas(id)
+        ON DELETE CASCADE,
     id_veterinario INT,
-    FOREIGN KEY (id_veterinario) REFERENCES veterinarios(id),
+    FOREIGN KEY (id_veterinario)
+        REFERENCES veterinarios(id),
     fecha_registro DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     descripcion VARCHAR(250) NOT NULL
 );
@@ -86,4 +90,13 @@ WHERE matricula = 'MV-AR06';
 UPDATE historial_clinico 
 SET descripcion = 'Control general de roedor. Se implementó la nueva dieta y el peso es óptimo. Cita de seguimiento en 3 meses.' 
 WHERE id = 1;
+
+-- Ejercicio 8 – Eliminar registros
+-- Eliminar una mascota (por ID o nombre)
+DELETE FROM mascotas 
+WHERE id = 3;
+
+-- Verificar que se eliminen automáticamente los registros del historial clínico asociados (ON DELETE CASCADE)
+SELECT * FROM historial_clinico 
+WHERE id_mascota = 3;
 
