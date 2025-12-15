@@ -101,12 +101,41 @@ SELECT * FROM historial_clinico
 WHERE id_mascota = 3;
 
 -- Ejercicio 9 – JOIN simple
--- Consulta que muestre: Nombre de la mascota, especie y nombre completo del dueño (nombre + apellido)
+-- Consulta que muestre:
+-- ● Nombre de la mascota
+-- ● Especie
+-- ● Nombre completo del dueño (nombre + apellido)
 SELECT 
     m.nombre AS nombre_mascota,
     m.especie AS especie_mascota,
     CONCAT(d.nombre, ' ', d.apellido) AS nombre_completo_dueno
 FROM 
     mascotas m
-INNER JOIN 
+INNER JOIN
     duenos d ON m.id_dueno = d.id;
+
+-- Ejercicio 10 – JOIN múltiple con historial
+-- Consulta que muestre todas las entradas del historial clínico con:
+-- ● Nombre y especie de la mascota
+-- ● Nombre completo del dueño
+-- ● Nombre completo del veterinario
+-- ● Fecha de registro
+-- ● Descripción
+-- Ordenados por fecha de registro descendente (DESC)
+SELECT 
+    m.nombre AS nombre_mascota,
+    m.especie AS especie,
+    CONCAT(d.nombre, ' ', d.apellido) AS nombre_dueno,
+    CONCAT(v.nombre, ' ', v.apellido) AS nombre_veterinario,
+    h.fecha_registro AS fecha_registro,
+    h.descripcion AS descripcion
+FROM 
+    historial_clinico h
+INNER JOIN 
+    mascotas m ON h.id_mascota = m.id
+INNER JOIN 
+    duenos d ON m.id_dueno = d.id 
+INNER JOIN 
+    veterinarios v ON h.id_veterinario = v.id
+ORDER BY 
+    h.fecha_registro DESC;
