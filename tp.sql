@@ -100,3 +100,13 @@ WHERE id = 3;
 SELECT * FROM historial_clinico 
 WHERE id_mascota = 3;
 
+-- Ejercicio 9 – JOIN simple
+-- Consulta que muestre: Nombre de la mascota, especie y nombre completo del dueño (nombre + apellido)
+SELECT 
+    m.nombre AS nombre_mascota,
+    m.especie AS especie_mascota,
+    CONCAT(d.nombre, ' ', d.apellido) AS nombre_completo_dueno
+FROM 
+    mascotas m
+INNER JOIN 
+    duenos d ON m.id_dueno = d.id;
