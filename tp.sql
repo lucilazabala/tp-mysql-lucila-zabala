@@ -44,16 +44,14 @@ CREATE TABLE historial_clinico(
 
 -- Ejercicio 6 – Insertar registros
 -- 3 dueños con información completa
-INSERT INTO
-    duenos (nombre, apellido, telefono, direccion)
+INSERT INTO duenos (nombre, apellido, telefono, direccion)
 VALUES
     ('Silvina', 'Mansilla', '3514332211', 'Avenida General Paz 200, Centro'),
     ('Ricardo', 'Darín', '3515443322', 'Bv. Chacabuco 1500, Nueva Córdoba'),
     ('Natalia', 'Oreiro', '3516554433', 'Calle Belgrano 600, Güemes');
 
 -- 3 mascotas, cada una asociada a un dueño
-INSERT INTO
-    mascotas (nombre, especie, fecha_nacimiento, id_dueno)
+INSERT INTO mascotas (nombre, especie, fecha_nacimiento, id_dueno)
 VALUES
     ('Mushu', 'Cobayo', '2021-10-14', 1),
     ('Chulo', 'Gato', '2024-12-03', 2),
@@ -67,9 +65,25 @@ VALUES
     ('Sofia', 'Gutiérrez', 'MV-AR06', 'Oftalmología');
 
 -- 3 registros de historial clínico
-INSERT INTO
-    historial_clinico (id_mascota, id_veterinario, descripcion)
+INSERT INTO historial_clinico (id_mascota, id_veterinario, descripcion)
 VALUES
     (1, 1, 'Control general de roedor, peso estable, se recomienda cambio de dieta.'),
     (2, 2, 'Revisión ocular por lagrimeo excesivo. Diagnóstico: conjuntivitis leve.'),
     (3, 1, 'Consulta por falta de apetito. Se le suministró vitaminas y antiparasitarios.');
+
+-- Ejercicio 7 – Actualizar registros
+-- Cambiar la dirección de un dueño (por ID o nombre)
+UPDATE duenos 
+SET direccion = 'Calle 25 de Mayo 110, Centro' 
+WHERE id = 2;
+
+-- Actualizar la especialidad de un veterinario (por ID o matrícula)
+UPDATE veterinarios 
+SET especialidad = 'Cirugía Mayor' 
+WHERE matricula = 'MV-AR06';
+
+-- Editar la descripción de un historial clínico (por ID)
+UPDATE historial_clinico 
+SET descripcion = 'Control general de roedor. Se implementó la nueva dieta y el peso es óptimo. Cita de seguimiento en 3 meses.' 
+WHERE id = 1;
+
